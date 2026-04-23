@@ -54,7 +54,7 @@ export default function App() {
       {/* Background Audio */}
       <audio ref={audioRef} loop>
         <source
-          src="./music/nasheed.mp3"
+          src="music/nasheed.mp3"
           type="audio/mpeg"
         />
       </audio>
