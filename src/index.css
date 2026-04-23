@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&family=Noto+Serif:wght@500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Noto Serif", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  
+  --color-primary: #ffb1c4;
+  --color-primary-electric: #FF007F;
+  --color-background-dark: #0A0A0A;
+  --color-surface: #131313;
+  --color-surface-dim: #050505;
+  --color-on-surface: #e5e2e1;
+  --color-on-surface-variant: #e5bcc5;
+
+  --radius-none: 0px;
+}
+
+@layer base {
+  body {
+    @apply bg-background-dark text-on-surface font-sans selection:bg-primary-electric/30 selection:text-white;
+    overflow-x: hidden;
+  }
+  
+  /* Prevent scroll when overlay is active */
+  body.no-scroll {
+    overflow: hidden;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 10px rgba(255, 0, 127, 0.6);
+  }
+
+  .glass-card {
+    background: rgba(26, 26, 26, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 0, 127, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .btn-primary-glow {
+    @apply bg-primary-electric text-white shadow-[0_0_15px_rgba(255,0,127,0.6)] transition-all duration-300 rounded-none;
+  }
+  
+  .btn-primary-glow:hover {
+    @apply shadow-[0_0_30px_rgba(255,0,127,0.9)] scale-105;
+  }
+
+  .btn-secondary-glow {
+    @apply bg-transparent text-primary-electric border border-primary-electric transition-all duration-300 rounded-none;
+  }
+  
+  .btn-secondary-glow:hover {
+    @apply bg-primary-electric/10 shadow-[0_0_15px_rgba(255,0,127,0.4)];
+  }
+
+  .input-minimal {
+    @apply bg-transparent border-0 border-b border-white/30 text-white rounded-none transition-all duration-300;
+  }
+  
+  .input-minimal:focus {
+    @apply outline-none border-b-2 border-primary-electric shadow-[0_5px_15px_-5px_rgba(255,0,127,0.5)];
+  }
+}
+
+/* Background Effects */
+@keyframes float-particles {
+  0% { transform: translateY(0px) translateX(0px); }
+  33% { transform: translateY(-20px) translateX(10px); }
+  66% { transform: translateY(-10px) translateX(-10px); }
+  100% { transform: translateY(0px) translateX(0px); }
+}
+
+.particles-layer {
+  position: fixed;
+  top: -10%;
+  left: -10%;
+  width: 120vw;
+  height: 120vh;
+  background-image: 
+      radial-gradient(circle, #FF007F 1px, transparent 1px),
+      radial-gradient(circle, #FF007F 1.5px, transparent 1.5px),
+      radial-gradient(circle, #FF007F 0.5px, transparent 0.5px);
+  background-size: 80px 80px, 150px 150px, 200px 200px;
+  background-position: 0 0, 40px 40px, 100px 100px;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 1;
+  animation: float-particles 15s ease-in-out infinite;
+}
+
+.ambient-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 30%, rgba(255, 0, 127, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
