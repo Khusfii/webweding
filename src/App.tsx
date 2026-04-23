@@ -54,7 +54,7 @@ export default function App() {
       {/* Background Audio */}
       <audio ref={audioRef} loop>
         <source
-          src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_24751f7b03.mp3?filename=romantic-piano-110006.mp3"
+          src="music/nasheed.mp3"
           type="audio/mpeg"
         />
       </audio>
